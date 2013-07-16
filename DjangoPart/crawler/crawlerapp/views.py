@@ -1,8 +1,6 @@
 # The views.py file
 from django.http import HttpResponse
-from crawlerapp.models import Directory
-from crawlerapp.models import Adress
-from crawlerapp.models import Photos
+from crawlerapp.models import Directory, Adress, Photos
 from django.template import Context, loader
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -16,6 +14,7 @@ def index(request):
 def contactus(request):
     Directory_list = Directory.objects.all()
     return render(request, 'crawlerapp/contactus.html', {'Directory_list': Directory_list,})
+
 
 
 # when a catagory is searched, it takes the request and
@@ -45,7 +44,7 @@ def search(request):
 # I tried to include paging here and has set a limit of 10
 # That is per page will contain only 10 Business details and not more than 10.
 def listing(request):
-    directory_list = search
+    directory_list = Directory.objects.all()
     paginator = Paginator(directory_list, 10) # Show 10 business details per page
 
     page = request.GET.get('page')
@@ -58,4 +57,4 @@ def listing(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
 
-    return render_to_response('search.html', {"directory": directory})
+    return directory
