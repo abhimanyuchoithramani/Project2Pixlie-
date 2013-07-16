@@ -1,0 +1,32 @@
+{% for Directory in crawlerapp %}
+    {# Each "direcotry" is a Crawlerapp model object. #}
+    {{ direcotry.full_name|upper }}<br />
+    ...
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if Directory.has_previous %}
+            <a href="?page={{ Directory.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ Directory.number }} of {{ Directory.paginator.num_pages }}.
+        </span>
+
+        {% if Directory.has_next %}
+            <a href="?page={{ Directory.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+
+<html>
+<head>
+          <title>{% block head_title %}SearchPage{% endblock %}</title>
+    </head>
+
+

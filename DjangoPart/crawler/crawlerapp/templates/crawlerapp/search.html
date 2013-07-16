@@ -1,0 +1,129 @@
+<html >
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="pagination.css" />
+        <script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript" src="jquery.pagination.js"></script>
+
+        <script type="text/javascript" src="members.js"></script>
+
+        <script type="text/javascript">
+document.ready(function(){
+$("#Content-Pagination").pagination(122, {
+		items_per_page:10,
+		callback:loadContents
+	});
+});
+
+          
+
+        </script>
+
+        
+      
+<title>{% block head_title %}SearchPage{% endblock %}</title>
+    </head>
+
+
+    <body>
+
+
+
+
+
+        <h1>{% block title %}The Blue Day, A Search Directory by Abhimanyu Choithramani{% endblock %}</h1>
+        {% block content %}
+      <div style="text-transform: uppercase;" id="network-bar">
+      	<dl>
+				         <dd>*          <a href="http://127.0.0.1:8000/crawlerapp/">Homepage</a>    
+									
+					*          <a href="http://127.0.0.1:8000/crawlerapp/contactus">Contact Us</a></dd>					
+      	</dl>
+      	<dl>
+      		<dd class="last" style="float: right;"><a href="http://127.0.0.1:8000/crawlerapp/" title="Blue Day Business Directory">Blue Day Business Directory</a></dd>
+      	</dl>
+      	<div class="network-bar-search"></div>
+      </div>
+      
+      <div style="border-top: 1px dashed #6b88a5; margin: 10px;"></div>
+      
+      <div style="padding: 0 10px 10px; position: relative;">
+            Search our <a href="http://127.0.0.1:8000/crawlerapp/">Business Directory</a> by entering a business type or name and just click on a Search.
+            	
+      </div>
+            <div style="position: relative;" id="headerSearchindex">
+      	<form action='' method="GET">
+      		<table style="width: 60%" border="0" cellpadding="1" cellspacing="0">
+    
+      			<tr>
+      				  <td class="hsTableTitleCell leftSpaced">  By category:</td>
+      				<td class="hsTableTitleCell leftSpaced">Or by company name:</td>
+        				<td style="width: 300px;">&nbsp;</td>
+      			</tr>
+      			<tr>
+      				<td class="hsTableBusinessCell leftSpaced"><input  type="text" title="Business Category" placeholder="e.g Computer, Restaurants" name="what"  autocomplete="off" value=""/></td>
+      				<td class="hsTableCompanyCell leftSpaced"><input  type="text" title="Company Name" placeholder="e.g Smith and Sons" name="who" value=""/></td>         				<td class="hsTableSearchButtCell leftSpaced"><input name="search_action" type="submit" value="Search"/></td>
+      			</tr>
+      			
+      		</table>
+      	</form>
+      	
+      </div>
+
+<div id='Content-Pagination'>
+<p>You searched for: <strong>{{ query }}</strong></p>
+
+{% if crawlerapp %}
+
+    <p>Found {{ crawlerapp|length }} in this Category{{ crawlerapp|pluralize }}.</p>
+    <ul>
+        
+{% for Directory in crawlerapp %}
+<li>Business Name:  {{ Directory.Bussiness_name }}</li>
+    Description:    {{ Directory.Description }}</br>
+    Contact Number: {{ Directory.Number }}</br>
+    Web_URL:        {{ Directory.Web_url }}</br>
+    Adress:        {% for Adress in Directory.adress_set.all %}{{forloop.counter}}:-  {{ Adress.adress_name }}</br>{% endfor %}
+    Photo:          {% for Photos in Directory.photos_set.all %}{{ Photos.Photo_name }}</br>{% endfor %}</br></br>
+{% endfor %}
+</ul>
+<div class="pagination">
+    <span class="step-links">
+        {% if Directory.has_previous %}
+            <a href="?page={{ Directory.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ Directory.number }} of {{ Directory.paginator.num_pages }}.
+        </span>
+
+        {% if Directory.has_next %}
+            <a href="?page={{ Directory.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% else %}
+    <p>No Business matched your search criteria.</p>
+{% endif %}
+
+
+			
+
+ </div>
+				
+	
+  </body>						
+		 
+<br><br><br><br><br><br><br><br>			
+
+			<div id="footer"> &copy; Abhimanyu Choithramani's <a href="http://127.0.0.1:8000/crawlerapp/" >The Blue Day</a> is a Business Search Directory.
+			</div>
+		</div>
+	</div>
+
+
+     {% endblock %}		
+
+ 
+</html>

@@ -1,0 +1,63 @@
+<html>
+<head>
+          <title>{% block head_title %}Welcome{% endblock %}</title>
+    </head>
+    <body>
+        <h1>{% block title %}Welcome to The Blue Day, A Search Directory by Abhimanyu Choithramani{% endblock %}</h1>
+        {% block content %}
+      <div style="text-transform: uppercase;" id="network-bar">
+      	<dl>
+				         <dd>*          <a href="http://127.0.0.1:8000/crawlerapp/">Homepage</a>    
+									
+					*          <a href="http://127.0.0.1:8000/crawlerapp/contactus">Contact Us</a></dd>					
+      	</dl>
+      	<dl>
+      		<dd class="last" style="float: right;"><a href="http://127.0.0.1:8000/crawlerapp/" title="Blue Day Business Directory">Blue Day Business Directory</a></dd>
+      	</dl>
+      	<div class="network-bar-search"></div>
+      </div>
+      
+      <div style="border-top: 1px dashed #6b88a5; margin: 10px;"></div>
+      
+      <div style="padding: 0 10px 10px; position: relative;">
+            Search our <a href="http://127.0.0.1:8000/crawlerapp/">Business Directory</a> by entering a business type or name and just click on a Search.
+            	
+      </div>
+            <div style="position: relative;" id="headerSearchindex">
+      	<form action='http://127.0.0.1:8000/crawlerapp/search/' method="GET">
+      		<table style="width: 60%" border="0" cellpadding="1" cellspacing="0">
+    
+      			<tr>
+      				  <td class="hsTableTitleCell leftSpaced">  By category:</td>
+      				<td class="hsTableTitleCell leftSpaced">Or by company name:</td>
+        				<td style="width: 300px;">&nbsp;</td>
+      			</tr>
+      			<tr>
+      				<td class="hsTableBusinessCell leftSpaced"><input  type="text" title="Business Category" placeholder="e.g Computer, Restaurants" name="what"  autocomplete="off" value=""/></td>
+      				<td class="hsTableCompanyCell leftSpaced"><input  type="text" title="Company Name" placeholder="e.g Smith and Sons" name="who" value=""/></td>         				<td class="hsTableSearchButtCell leftSpaced"><input name="search_action" type="submit" value="Search"/></td>
+      			</tr>
+      			
+      		</table>
+      	</form>
+      	
+      </div>
+
+
+				
+
+				
+	
+  </body>						
+		 
+<br><br><br><br><br><br><br><br>			
+
+			<div id="footer"> &copy; Abhimanyu Choithramani's <a href="http://127.0.0.1:8000/crawlerapp/" >The Blue Day</a> is a Business Search Directory.
+			</div>
+		</div>
+	</div>
+
+
+     {% endblock %}		
+
+ 
+</html>
