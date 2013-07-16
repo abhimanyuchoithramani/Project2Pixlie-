@@ -1,5 +1,7 @@
 Here is my 2nd Test Project for Junior Python Developer.
 
+Crawl and Display
+
 The Django part is contained in the DjangoPart folder.
 And the Scrapy part in the ScrapyPart folder
 For DataBase I have used MySQL
