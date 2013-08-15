@@ -32,7 +32,7 @@ class ProjectSpider(BaseSpider):
     def parse(self, response):
         fired_url = response.url
         hxs = HtmlXPathSelector(response)
-        sites = hxs.select('//div[@class="abTbl "]')
+        sites = hxs.select('//div[@class="abTbl "] | //div[@class="icListItem"]')
         #items = []
         for site in sites:
             item = Project2Item()
